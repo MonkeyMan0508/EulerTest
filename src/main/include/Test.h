@@ -5,8 +5,10 @@
 #include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
 #include <frc/Servo.h>
-#include "frc/smartdashboard/SmartDashboard.h"
+#include <frc/AnalogInput.h>
 #include <AHRS.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/smartdashboard/SendableChooser.h>
 
 #define servoOpen     90
 #define servoClosed   125
@@ -25,13 +27,16 @@ class Robot : public TimedRobot {
     void TestPeriodic() override;
     double DeadZone(double speed, double zone);
 
-    const int TALON = 5, SPARK = 7, SERVO = 0, POT = 9;
+    const int TALON = 5, SPARK = 7, SERVO = 0, POT1 = 0, POT2 = 3, PROX1 = 1, PROX2 = 2;
 
   private:
     rev::CANSparkMax *spark;
     rev::CANEncoder *sparkEncoder;
     WPI_TalonSRX *talon;
     Servo *servo;
-    AnalogPotentiometer *pot;
+    AnalogPotentiometer *pot1;
+	AnalogPotentiometer *pot2;
+	AnalogInput *prox1;
+	AnalogInput *prox2;
     XboxController *xbox;
 };

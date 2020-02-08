@@ -6,7 +6,10 @@ void Robot::RobotInit() {
     spark        = new CANSparkMax(SPARK, CANSparkMax::MotorType::kBrushless);
     talon        = new WPI_TalonSRX(TALON);
     servo        = new Servo(SERVO);
-    pot          = new AnalogPotentiometer(POT, 1.0, 0.0);
+    pot1         = new AnalogPotentiometer(POT1, 1.0, 0.0);
+	pot2         = new AnalogPotentiometer(POT2, 1.0, 0.0);
+	prox1		 = new AnalogInput(PROX1);
+	prox2		 = new AnalogInput(PROX2);
     sparkEncoder = new CANEncoder(*spark);
 }
 
@@ -33,7 +36,10 @@ void Robot::TeleopPeriodic() {
     } else {
         servo->SetAngle(servoClosed);
     }
-
+	frc::SmartDashboard::PutNumber("pot1",  pot1->Get());
+	frc::SmartDashboard::PutNumber("pot2",  pot2->Get());
+	frc::SmartDashboard::PutNumber("prox1", prox1->GetVoltage());
+	frc::SmartDashboard::PutNumber("prox2", prox2->GetValue());
 }
 
 void Robot::TestPeriodic() {
