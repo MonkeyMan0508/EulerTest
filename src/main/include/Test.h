@@ -27,7 +27,7 @@ class Robot : public TimedRobot {
     void TestPeriodic() override;
     double DeadZone(double speed, double zone);
 
-    const int TALON = 5, SPARK = 7, SERVO = 0, POT1 = 0, POT2 = 3, PROX1 = 1, PROX2 = 2;
+    const int TALON = 5, SPARK = 7, SERVO = 0, POT1 = 0, POT2 = 3, PROX1 = 1, PROX2 = 2, IR_SENSOR = 1;
 
   private:
     rev::CANSparkMax *spark;
@@ -38,5 +38,6 @@ class Robot : public TimedRobot {
 	AnalogPotentiometer *pot2;
 	AnalogInput *prox1;
 	AnalogInput *prox2;
+	DigitalInput *irSensor;
     XboxController *xbox;
 };
